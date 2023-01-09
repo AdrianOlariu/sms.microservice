@@ -22,5 +22,3 @@ app.get('/*', (req,res)=>{
 app.listen(4000, () => {
 	console.log('server running');
 });
-
-console.log('does it work?');
