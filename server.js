@@ -23,8 +23,4 @@ app.listen(4000, () => {
 	console.log('server running');
 });
 
-console.log('sms');
-//test service
-console.log('test');
-//another test
-//some test here
+console.log('does it work?');
