@@ -1,11 +1,11 @@
 
 const express = require('express');
-
+const fs = require('fs');
 const router = express.Router();
 
 router.get('/',(req,res)=>{
 
-	res.send('<h1>sms</h1>');
+	res.json({"ceva":"ceva"});
 });
 
 

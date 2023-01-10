@@ -3,5 +3,21 @@
 <body>
 	<h1>SMS Microservice API</h1>
 	<pre>This microservice is hosted on a Raspberry PI that has a GSM Modem conected to it, used to send the SMS.</pre>
+	Phone Number:<input type="text" id="phone"><br>
+	Text Message:<input type="text" id="text"><br>
+	<button id="send">Send</button>
+	<script>
+		const phoneNumber = document.querySelector('#phone');
+		const text = document.querySelector('#text');
+		const send = document.querySelector('#send');
+
+		send.addEventListener('click',(e)=>{
+			e.preventDefault();
+			console.log(phoneNumber.value, text.value, 'works');
+			phoneNumber.value = ''; 
+			text.value = '';
+			fetch('http://localhost:4000/sms').then(res => console.log(res.json()));
+		});
+	</script>
 </body>
 </html>

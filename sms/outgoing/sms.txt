@@ -1,0 +1,3 @@
+To:40743166391
+
+Mesaj trimis din Visual Studio prin push pe git luat automat de web hook si pull-uit pe server(raspberry pi) iar apoi luat fisierul de catre sms3 si trimis catre gsm modem.
