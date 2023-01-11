@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const path = require('path');
 const sms = require('./routes/api.js');
 const PORT = process.env.PORT || 4000;
 
+app.use(cors());
 app.use(express.json());//for parsing the json
 
 app.get('^/$|/index(.html)?',(req,res)=>{
