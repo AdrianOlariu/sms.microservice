@@ -4,6 +4,8 @@ const path = require('path');
 const sms = require('./routes/api.js');
 const PORT = process.env.PORT || 4000;
 
+app.use(express.json());//for parsing the json
+
 app.get('^/$|/index(.html)?',(req,res)=>{
 	res.sendFile(path.join(__dirname,'views','index.html'));
 	}
