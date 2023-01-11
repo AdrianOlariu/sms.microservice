@@ -8,9 +8,6 @@ function generateName(){
 }
 
 async function createSms(phone, text){
-    // if(!fs.existsSync(path.join(__dirname,'..', 'sms','outgoing'))){
-    //     fs.mkdir(path.join(__dirname,'..', 'Logs'),(err) =>{ if(err) {throw err;}});
-    // }
     await fsPromises.writeFile(path.join(__dirname,'..', 'sms','outgoing', `sms-${generateName()}`), `To:${phone}\n\n${text}`);
     console.log('sms file created');
 }
