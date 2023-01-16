@@ -16,7 +16,6 @@
 			sendSms(phoneNumber.value, text.value);
 			phoneNumber.value = ''; 
 			text.value = '';
-			// fetch('http://localhost:4000/sms').then(res => console.log(res.json()));
 		});
 
 		async function sendSms(phoneNumber, text){

@@ -2,7 +2,7 @@
 const express = require('express');
 const fs = require('fs');
 const router = express.Router();
-const createSms = require('../middleware/createSms');
+const {createSms, checkSmsStatus} = require('../middleware/smsConfig');
 
 router.get('/',(req,res)=>{
 
@@ -13,7 +13,7 @@ router.post('/',(req,res)=>{
 	const {phone, text} = req.body;
 	console.log(phone, text);
 	createSms(phone,text);
-	res.json({"success":"sms send to Q","phone":phone, "text":text});
+	res.json({"success":"sms sent to Q","phone":phone, "text":text});
 });
 
 
