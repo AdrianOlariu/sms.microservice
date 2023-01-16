@@ -13,6 +13,7 @@ router.post('/',(req,res)=>{
 	const {phone, text} = req.body;
 	console.log(phone, text);
 	createSms(phone,text);
+	
 	res.json({"success":"sms sent to Q","phone":phone, "text":text});
 });
 
