@@ -39,16 +39,16 @@ function createSms(){
         let smsFileName = `sms-${generateName()}`;
         fs.writeFileSync(path.join(__dirname,'..', 'sms','outgoing', smsFileName), `To:${phone}\n\n${text}`);
         checkSmsStatus(smsFileName, res, next);
-            
     }
 }
 
 function checkSmsStatus(smsFileName, res, next){
-        fs.watch(path.join(__dirname,'..', 'sms','outgoing', smsFileName), (eventType, fileName) => {
+        fs.watch(path.join(__dirname,'..', 'sms','modem1'), (eventType, fileName) => {
             console.log(eventType);
             console.log('reached');
             console.log(fileName);
                 if(fs.existsSync(path.join(__dirname,'..', 'sms','sent', smsFileName))){
+                    console.log('file moved to sent folder');
                     next();
                 }else if(fs.existsSync(path.join(__dirname,'..', 'sms','failed', smsFileName))){
                     res.status(500).json({"failed":"sms not sent due to internal server error"});
