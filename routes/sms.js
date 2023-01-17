@@ -12,7 +12,7 @@ router.get('/',(req,res)=>{
 router.post('/',checkNumberFormat(), createSms(), (req,res)=>{
 	const {phone, text} = req.body;
 	console.log(phone, text);
-	res.json({"success":"sms sent to Q","phone":phone, "text":text});
+	res.json({"success":"sms sent","phone":phone, "text":text});
 	
 });
 
