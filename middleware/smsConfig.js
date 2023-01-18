@@ -2,6 +2,7 @@ const fs = require('fs');
 const fsPromises = require('fs').promises;
 const path = require('path');
 const {format} = require('date-fns');
+let sms = [];
 
 function generateName(){
     return `${format(new Date(),'dd-MM-yyyy-hh-mm-ss')}.txt`;
@@ -57,4 +58,65 @@ function checkSmsStatus(smsFileName, res, next){
             
 }
 
-module.exports = {checkNumberFormat, createSms, checkSmsStatus};
+async function readSms(phoneNumber){
+    const files = fs.readdirSync(path.join(__dirname,'..','sms','incoming'));
+    
+    let messages =[];
+    files.forEach(async (file)=>{
+        const sms = await fs.promises.readFile((path.join(__dirname,'..','sms','incoming',file)),'utf-8');
+        messages.push(sms);
+        // console.log(messages);
+    });
+
+    return messages;
+}
+
+async function lastSms(){
+
+    const files = await fsPromises.readdir(path.join(__dirname,'..','sms','incoming'));
+
+    return Promise.resolve(fsPromises.readFile(path.join(__dirname,'..','sms','incoming',files[files.length-1]), 'utf-8'));
+}
+
+lastSms().then(result=>console.log(result));
+
+
+async function smsPaths(){
+    
+    const files = await fsPromises.readdir(path.join(__dirname,'..','sms','incoming'));
+
+    const paths = files.map(filePath => {
+        return path.join(__dirname,'..','sms','incoming',filePath);
+    })
+
+    return paths;
+
+}
+
+async function readSmses(){
+    return smsPaths().then(async data => {
+        const smses = await data.map(data =>{
+            console.log(data);
+            return fsPromises.readFile(data, 'utf-8');
+        })
+
+        return Promise.all(smses);
+    });
+}
+
+function getSms(phoneNumber){
+    return readSmses().then(
+        data => {
+            let smses = data.map(sms =>{
+                if(sms.substring(6,17).includes(phoneNumber)){
+                    return sms;
+                }else{
+                    return;
+                }
+            })
+            return Promise.resolve(smses);
+        });
+}
+
+// getSms('0745133925').then(data => console.log(data[0]));
+module.exports = {checkNumberFormat, createSms, checkSmsStatus, getSms, lastSms};

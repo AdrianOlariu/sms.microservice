@@ -1,17 +1,14 @@
 
 const express = require('express');
 const fs = require('fs');
+const path = require('path');
 const router = express.Router();
 const {createSms, checkNumberFormat, checkSmsStatus} = require('../middleware/smsConfig');
+const {checkOrigin} = require('../middleware/checkOrigin');
 
-router.get('/',(req,res)=>{
 
-	res.json({"ceva":"ceva"});
-});
-
-router.post('/',checkNumberFormat(), createSms(), (req,res)=>{
+router.post('/',checkOrigin(), checkNumberFormat(), createSms(), (req,res)=>{
 	const {phone, text} = req.body;
-	console.log(phone, text);
 	res.json({"success":"sms sent","phone":phone, "text":text});
 	
 });

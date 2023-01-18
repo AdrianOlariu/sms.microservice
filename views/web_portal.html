@@ -1,0 +1,39 @@
+<html>
+<head><title>SMS Microservice API</title></head>
+<body>
+	<a href="/"><h1>SMS Microservice</h1></a>
+	<h1>SMS Microservice Web Portal</h1>
+	Phone Number:<input type="text" id="phone"><br>
+	Text Message:<input type="text" id="text"><br>
+	<button id="send">Send</button>
+	<script>
+		const phoneNumber = document.querySelector('#phone');
+		const text = document.querySelector('#text');
+		const send = document.querySelector('#send');
+
+		send.addEventListener('click',(e)=>{
+			e.preventDefault();
+			sendSms(phoneNumber.value, text.value);
+			phoneNumber.value = ''; 
+			text.value = '';
+			// fetch('http://localhost:4000/sms').then(res => console.log(res.json()));
+		});
+
+		async function sendSms(phoneNumber, text){
+			try{
+				console.log(phoneNumber, text, 'works');
+				const response = await fetch(
+					'http://localhost:4000/sms',{
+						method: 'POST',
+						headers: {'Content-Type':'application/json'},
+						credentials: 'include',
+						body: JSON.stringify({phone:phoneNumber, text:text})
+					}
+                    )
+				}catch(err){
+					console.log('caught error',err);
+				}
+		}
+	</script>
+</body>
+</html>

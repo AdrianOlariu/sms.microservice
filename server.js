@@ -17,6 +17,14 @@ app.get('/json', (req,res)=>{
 	res.send({'json':'working'});
 });
 
+app.use('/api_testing', (req,res) =>{
+	res.sendFile(path.join(__dirname,'views','api_testing.html'));
+})
+
+app.use('/web_portal', (req,res)=>{
+	res.sendFile(path.join(__dirname,'views','web_portal.html'));
+})
+
 app.use('/sms', require('./routes/sms'));
 app.use('/api', require('./routes/api'));
 
