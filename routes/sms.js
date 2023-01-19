@@ -9,7 +9,7 @@ const {checkOrigin} = require('../middleware/checkOrigin');
 
 router.post('/',checkOrigin(), checkNumberFormat(), createSms(), (req,res)=>{
 	const {phone, text} = req.body;
-	res.json({"success":"sms sent","phone":phone, "text":text});
+	res.json({"message":"sms sent","phone":phone, "text":text});
 	
 });
 
