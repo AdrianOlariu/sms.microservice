@@ -11,6 +11,7 @@
     </textarea><br>
     <button id="btnGetLastSms">Get last sms received</button>
     <script>
+        const url = 'http://sms.luxartem.ro'; // OR, for local development: http://localhost:4000
         const apiKey = 'ef1decb2a75ededa273bd5aea2ef1d0b8a042547dc5b96892a635f10081c0d4b257687f2290352591f7c9ad5fdb1c1cb1e263f02b8e5e65fe7b5835109af2a1a';
         const btnGetLastSms = document.querySelector('#btnGetLastSms');
         const btnReadMessages = document.querySelector('#btnReadMessages');
@@ -47,7 +48,7 @@
 
 
         async function getLastSms(){
-            return fetch('http://localhost:4000/api?last=true')
+            return fetch(`${url}/api?last=true`)
                 .then(response => response.json())
                 .then(data => {
                     return data;
@@ -55,7 +56,7 @@
         }
 
         async function getSmsByNumber(phoneNumber){
-            return fetch(`http://localhost:4000/api?phone=${phoneNumber}`)
+            return fetch(`${url}/api?phone=${phoneNumber}`)
                 .then(response=> response.json())
                 .then(data =>{
                     console.log(data);
@@ -64,7 +65,7 @@
         }
 
         async function sendSms(phoneNumber, message){
-            return fetch(`http://localhost:4000/api?key=${apiKey}&phone=${phoneNumber}&text=${message}`,{method:'POST'})
+            return fetch(`${url}/api?key=${apiKey}&phone=${phoneNumber}&text=${message}`,{method:'POST'})
                 .then(response => response.json());
         }
 

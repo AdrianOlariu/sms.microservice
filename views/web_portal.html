@@ -7,6 +7,7 @@
 	Text Message:<input type="text" id="text"><br>
 	<button id="send">Send</button>
 	<script>
+		const url = 'http://sms.luxartem.ro'; // OR, for local development: http://localhost:4000
 		const phoneNumber = document.querySelector('#phone');
 		const text = document.querySelector('#text');
 		const send = document.querySelector('#send');
@@ -23,7 +24,7 @@
 			try{
 				console.log(phoneNumber, text, 'works');
 				const response = await fetch(
-					'http://localhost:4000/sms',{
+					`${url}/sms`,{
 						method: 'POST',
 						headers: {'Content-Type':'application/json'},
 						credentials: 'include',
