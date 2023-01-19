@@ -1,0 +1,72 @@
+*{
+    background-color: antiquewhite;
+    text-decoration: none;
+    margin-top: .2em!important;
+    align-items: center;
+    text-align: center;
+    font-size: xx-large;
+    padding: 0%;
+    margin: 0%;
+    
+}
+
+h1{
+    font-size: 60px;
+}
+
+a{
+    color:#434242;
+}
+
+a:hover{
+    color:crimson;
+
+}
+
+a:visited{
+    text-decoration: none;
+}
+
+button:hover{
+    background-color:#334244;
+    color:#ffffff;
+
+    cursor: pointer;
+}
+
+input, input::placeholder{
+    color:#334244;
+    width: 22em;
+    text-align: left;
+}
+
+
+textarea, textarea::placeholder{
+    
+    color:#334244;
+    text-align: left;
+}
+
+.text-message{
+    resize: none;
+    width: 27em;
+    height: 22em;
+}
+
+.btn-send{
+    float:right;
+}
+
+.btn-read{
+    float:left;
+}
+
+.send-message-layout{
+    display: inline-block;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.full-size-button{
+    width: 22em;
+}

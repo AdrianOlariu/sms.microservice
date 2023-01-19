@@ -1,11 +1,26 @@
 <html>
-<head><title>SMS Microservice API</title></head>
+<head>
+	<title>SMS Microservice API</title>
+	<link rel="stylesheet" href="/style.css">
+</head>
 <body>
-	<a href="/"><h1>SMS Microservice</h1></a>
-	<h1>SMS Microservice Web Portal</h1>
-	Phone Number:<input type="text" id="phone"><br>
-	Text Message:<input type="text" id="text"><br>
-	<button id="send">Send</button>
+	<div>
+		<a href="/"><h1>SMS Microservice</h1></a>
+		<hr>
+		<h3>SMS Microservice Web Portal</h3>
+	</div>
+	<div class="send-message-layout">
+
+		<div>
+			<input type="text" id="phone" placeholder="Phone number"><br>
+			<textarea class='text-message' type="text" id="text" placeholder="Text Message"></textarea>
+		</div>
+		<button class="btn-send" id="send">Send</button>
+	</div>
+
+
+
+
 	<script>
 		const url = 'http://sms.luxartem.ro'; // OR, for local development: http://localhost:4000
 		const phoneNumber = document.querySelector('#phone');

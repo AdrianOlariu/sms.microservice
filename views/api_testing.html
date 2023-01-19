@@ -1,15 +1,27 @@
 <html>
-<head><title>SMS API Testing</title></head>
+<head>
+    <title>SMS API Testing</title>
+	<link href="/style.css" rel="stylesheet">
+</head>
 <body>
-	<a href="/"><h1>SMS Microservice</h1></a>
-    <h1>SMS Microservice API Testing</h1>
-    <button id="btnSendSms">Send Message</button>
-    <button id="btnReadMessages">Read messages</button>
-    <input id="phoneNumber" name="getMsg" rows="4" cols="50">
-    </input><br>
-    <textarea id="getMsg" name="getMsg" rows="4" cols="50">
-    </textarea><br>
-    <button id="btnGetLastSms">Get last sms received</button>
+    <div>
+        <div>
+            <a href="/"><h1>SMS Microservice</h1></a>
+            <hr>
+            <h3>SMS Microservice API Testing</h3>
+        </div>
+        
+        <div class="send-message-layout">
+            <div>
+                <button class="full-size-button" id="btnGetLastSms"> Get last sms received</button><br>
+                <input id="phoneNumber" placeholder="Phone number"></input><br>
+                <textarea class='text-message'type="text" id="getMsg" placeholder="Text Message/s"></textarea>
+            </div>
+            <button class="btn-send" id="btnSendSms">Send</button>
+            <button class="btn-read" id="btnReadMessages">Read Messages from: Phone number</button><br>
+        </div>
+    </div>
+
     <script>
         const url = 'http://sms.luxartem.ro'; // OR, for local development: http://localhost:4000
         const apiKey = 'ef1decb2a75ededa273bd5aea2ef1d0b8a042547dc5b96892a635f10081c0d4b257687f2290352591f7c9ad5fdb1c1cb1e263f02b8e5e65fe7b5835109af2a1a';
@@ -22,7 +34,8 @@
             e.preventDefault();
             if(phoneNumber.value && getMsg.value){
                 await sendSms(phoneNumber.value,getMsg.value.substring(0,200)).then(result=>{
-                    console.log(result);
+                    getMsg.value = result.success;
+                    phoneNumber.value = '';
                 });
             }
         })
@@ -70,5 +83,9 @@
         }
 
     </script>
+
 </body>
 </html>
+<!-- In the future, you may extend the functionality so that a user can read all it's correspondence based on the API KEY it uses-->
+<!-- To do so you would need to implement an API KEY FIELD in the message FILE when they are created in the OUTGOING FOLDER-->
+<!-- Doing this you can MONITOR how many sms were sent from a single API KEY -->

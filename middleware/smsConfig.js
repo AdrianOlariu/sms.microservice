@@ -123,7 +123,7 @@ function getSms(phoneNumber){
         data => {
             let smses = data.map(sms =>{
                 if(sms.substring(6,17).includes(phoneNumber)){
-                    return sms;
+                    return sms + '\n';
                 }else{
                     return;
                 }
