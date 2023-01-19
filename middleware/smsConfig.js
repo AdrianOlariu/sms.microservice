@@ -10,7 +10,14 @@ function generateName(){
 
 function checkNumberFormat(){
     return (req, res, next) =>{
-        let {phone} = req.body;
+        let phone, text;
+        if(req.body.phone && req.body.text){
+            phone = req.body.phone;
+            text = req.body.text;
+        }else if(req.query.phone && req.query.text){
+            phone = req.query.phone;
+            text = req.query.text;
+        }
         if(phone[0] != '+' && (phone[0] != '4') && phone[0] != '0' && phone[0] != '7'){
             res.status(400);
             res.json({"failed":"phone number format incorrect"});
@@ -22,7 +29,14 @@ function checkNumberFormat(){
 
 function createSms(){
     return (req, res, next) => {
-        let {phone, text} = req.body;
+        let phone, text;
+        if(req.body.phone && req.body.text){
+            phone = req.body.phone;
+            text = req.body.text;
+        }else if(req.query.phone && req.query.text){
+            phone = req.query.phone;
+            text = req.query.text;
+        }
         if(phone[0] === '0'){
             phone = '+4' + phone;
         }else if(phone[0] === '4'){

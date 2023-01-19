@@ -3,30 +3,69 @@
 <body>
 	<a href="/"><h1>SMS Microservice</h1></a>
     <h1>SMS Microservice API Testing</h1>
-    <!-- <button id="btnSend">Send</button>
-    <textarea id="sendMsg" name="getMsg" rows="4" cols="50">
-    </textarea><br> -->
-    <button id="btnGet">Get last sms received</button><br>
+    <button id="btnSendSms">Send Message</button>
+    <button id="btnReadMessages">Read messages</button>
+    <input id="phoneNumber" name="getMsg" rows="4" cols="50">
+    </input><br>
     <textarea id="getMsg" name="getMsg" rows="4" cols="50">
-    </textarea>
+    </textarea><br>
+    <button id="btnGetLastSms">Get last sms received</button>
     <script>
-        const btnGet = document.querySelector('#btnGet');
-        const getMsg = document.querySelector('#getMsg');
-        btnGet.addEventListener('click',async  (e)=>{
+        const apiKey = 'ef1decb2a75ededa273bd5aea2ef1d0b8a042547dc5b96892a635f10081c0d4b257687f2290352591f7c9ad5fdb1c1cb1e263f02b8e5e65fe7b5835109af2a1a';
+        const btnGetLastSms = document.querySelector('#btnGetLastSms');
+        const btnReadMessages = document.querySelector('#btnReadMessages');
+        const phoneNumber = document.querySelector('#phoneNumber');
+        const btnSendSms = document.querySelector('#btnSendSms');
+
+        btnSendSms.addEventListener('click', async(e)=>{
             e.preventDefault();
-            console.log('sent');
-            getSms().then(result => {
-                getMsg.innerHTML = result;
-                console.log(result)
-            });
+            if(phoneNumber.value && getMsg.value){
+                await sendSms(phoneNumber.value,getMsg.value.substring(0,200)).then(result=>{
+                    console.log(result);
+                });
+            }
         })
 
-        async function getSms(){
-            return fetch('http://sms.luxartem.ro/api')
+        btnReadMessages.addEventListener('click',async  (e)=>{
+            e.preventDefault();
+            if(phoneNumber.value){
+                console.log(phoneNumber.value);
+                getSmsByNumber(phoneNumber.value).then(result=>{
+                    console.log(result);
+                    getMsg.value = result;
+                })
+            }
+        });
+
+        btnGetLastSms.addEventListener('click', async (e) =>{
+            e.preventDefault();
+            await getLastSms().then(result =>{
+                console.log(result);
+                getMsg.value = result;
+            })
+        })
+
+
+        async function getLastSms(){
+            return fetch('http://localhost:4000/api?last=true')
                 .then(response => response.json())
                 .then(data => {
                     return data;
                 });
+        }
+
+        async function getSmsByNumber(phoneNumber){
+            return fetch(`http://localhost:4000/api?phone=${phoneNumber}`)
+                .then(response=> response.json())
+                .then(data =>{
+                    console.log(data);
+                    return data;
+                })
+        }
+
+        async function sendSms(phoneNumber, message){
+            return fetch(`http://localhost:4000/api?key=${apiKey}&phone=${phoneNumber}&text=${message}`,{method:'POST'})
+                .then(response => response.json());
         }
 
     </script>
