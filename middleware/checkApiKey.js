@@ -7,7 +7,7 @@ function checkApiKey(){
         if(process.env.PUBLIC_KEY === key){
             next();
         }else{
-            res.status(500).json({'unauthorized':'wrong api key'});
+            res.status(500).json({'message':'wrong api key'});
         }
     }
 }
