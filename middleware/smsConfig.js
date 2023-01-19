@@ -79,7 +79,6 @@ async function readSms(phoneNumber){
     files.forEach(async (file)=>{
         const sms = await fs.promises.readFile((path.join(__dirname,'..','sms','incoming',file)),'utf-8');
         messages.push(sms);
-        // console.log(messages);
     });
 
     return messages;
@@ -132,5 +131,4 @@ function getSms(phoneNumber){
         });
 }
 
-// getSms('0745133925').then(data => console.log(data[0]));
 module.exports = {checkNumberFormat, createSms, checkSmsStatus, getSms, lastSms};
