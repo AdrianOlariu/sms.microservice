@@ -19,7 +19,7 @@ router.route('/').get(async (req, res)=>{
 router.route('/').post(checkApiKey(), checkOrigin(), smsConfig.checkNumberFormat(), smsConfig.createSms(), (req, res)=>{
 	const {phone, text} = req.query;
 	console.log(phone, text);
-	res.json({"success":"sms sent","phone":phone, "text":text});
+	res.json({"message":"sms sent","phone":phone, "text":text});
 });
 
 

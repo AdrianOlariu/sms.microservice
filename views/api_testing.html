@@ -34,7 +34,7 @@
             e.preventDefault();
             if(phoneNumber.value && getMsg.value){
                 await sendSms(phoneNumber.value,getMsg.value.substring(0,200)).then(result=>{
-                    getMsg.value = result.success;
+                    getMsg.value = result.message;
                     phoneNumber.value = '';
                 });
             }

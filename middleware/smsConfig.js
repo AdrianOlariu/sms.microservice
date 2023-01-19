@@ -20,7 +20,7 @@ function checkNumberFormat(){
         }
         if(phone[0] != '+' && (phone[0] != '4') && phone[0] != '0' && phone[0] != '7'){
             res.status(400);
-            res.json({"failed":"phone number format incorrect"});
+            res.json({"message":"phone number format incorrect"});
         }else{
             next();
         }
@@ -44,7 +44,7 @@ function createSms(){
                 phone = '+' + phone;
             }else{
                 res.status(400);
-                return res.json({"failed":"phone number format incorrect"});
+                return res.json({"message":"phone number format incorrect"});
             }
         }else if(phone[0] === '+'){
             phone = phone;
@@ -66,7 +66,7 @@ function checkSmsStatus(smsFileName, res, next){
                     console.log('file moved to sent folder');
                     next();
                 }else if(fs.existsSync(path.join(__dirname,'..', 'sms','failed', smsFileName))){
-                    res.status(500).json({"failed":"sms not sent due to internal server error"});
+                    res.status(500).json({"message":"sms not sent due to internal server error"});
                 }   
             })
             
