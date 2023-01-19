@@ -5,21 +5,21 @@
 </head>
 <body>
 	<div>
-		<a href="/"><h1>SMS Microservice</h1></a>
-		<hr>
-		<h3>SMS Microservice Web Portal</h3>
-	</div>
-	<div class="send-message-layout">
-
 		<div>
-			<input type="text" id="phone" placeholder="Phone number"><br>
-			<textarea class='text-message' type="text" id="text" placeholder="Text Message"></textarea>
+			<a href="/"><h1>SMS Microservice</h1></a>
+			<hr>
+			<h3>SMS Microservice Web Portal</h3>
 		</div>
-		<button class="btn-send" id="send">Send</button>
+
+		<div class="send-message-layout">
+			<div>
+				<input type="text" id="phone" placeholder="Phone number"><br>
+				<textarea class='text-message' type="text" id="text" placeholder="Text Message"></textarea>
+			</div>
+			<button class="btn-send" id="send">Send</button>
+		</div>
+		
 	</div>
-
-
-
 
 	<script>
 		const url = 'http://sms.luxartem.ro'; // OR, for local development: http://localhost:4000
