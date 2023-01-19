@@ -1,0 +1,15 @@
+[Unit]
+Description=Initialisation of the GSM Modem application sms3
+After=syslog.target
+
+[Service]
+ExecStart=/usr/local/bin/smsd -c /etc/smsd.conf -s
+#ExecStart=/usr/local/bin/smsd
+#PIDFile=/var/run/smsd.pid
+#Type=forking
+Restart=always
+RestartSec=20
+User=root
+
+[Install]
+WantedBy=multi-user.target

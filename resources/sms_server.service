@@ -1,0 +1,16 @@
+[Unit]
+Description=sms.microservice.service
+After=network-up.target
+
+[Service]
+ExecStart=/usr/bin/node /home/pi/WebApps/sms.microservice/server.js
+Restart=always
+RestartSec=10
+StandardOutput=syslog
+StandarError=syslog
+SyslogIdentifier=sms-microservice
+User=pi
+EnvironmentFile=/home/pi/WebApps/sms.microservice/.env
+
+[Install]
+WantedBy=multi-user.target
