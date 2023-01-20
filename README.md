@@ -18,7 +18,7 @@ Connected to the USB port, there is a GSM Modem witha SIM Card controlled by a N
 
 Usage:
 
-The service is used via a POST HTTP REQUEST ON: 'http://sms.luxartem.ro/sms?key=<apiKey>&phone=<phone>&message=<message>' AND expects a the API KEY, Phone Number and a Text Message and returns a response inside a JSON 'message' field of type(success: message sent, failed: message not sent)
+The service is used via a POST HTTP REQUEST ON: 'http://sms.luxartem.ro/api?key=<apiKey>&phone=<phone>&message=<message>' AND expects a the API KEY, Phone Number and a Text Message and returns a response inside a JSON 'message' field of type(success: message sent, failed: message not sent)
 
 Materails used for interacting with the modem through linux/raspberrypi:
 https://sysopstechnix.com/build-your-own-sms-gateway-using-raspberry-pi/
