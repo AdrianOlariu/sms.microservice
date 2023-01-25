@@ -1,4 +1,4 @@
-const allowedOrigins = ['http://sms.luxartem.ro'];//,'http://localhost:4000'
+const allowedOrigins = ['http://sms.luxartem.ro','http://brailei201.home.ro'];//,'http://localhost:4000'
 
 function checkOrigin(origin){
     return (req, res, next) => {
